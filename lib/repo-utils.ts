@@ -53,7 +53,7 @@ export function buildContributionData(commits: Commit[]): ContributionDay[] {
     countPerDay.set(dateStr, (countPerDay.get(dateStr) ?? 0) + 1);
   }
 
-  const maxCount = Math.max(0, ...countPerDay.values());
+  const maxCount = Math.max(0, ...dates.map((d) => countPerDay.get(d) ?? 0));
 
   return dates.map((date) => {
     const count = countPerDay.get(date) ?? 0;
@@ -126,13 +126,29 @@ export function exportRepoAsJson(state: RepoState): void {
 }
 
 export function parseImportedJson(raw: string): RepoState | null {
+  const isCommit = (c: unknown): boolean =>
+    typeof c === "object" &&
+    c !== null &&
+    typeof (c as Commit).id === "string" &&
+    typeof (c as Commit).message === "string" &&
+    typeof (c as Commit).status === "string" &&
+    typeof (c as Commit).createdAt === "number";
+
+  const isBranch = (b: unknown): boolean =>
+    typeof b === "object" &&
+    b !== null &&
+    typeof (b as { name: unknown }).name === "string" &&
+    typeof (b as { createdAt: unknown }).createdAt === "number";
+
   try {
     const parsed = JSON.parse(raw) as unknown;
     if (
       typeof parsed !== "object" ||
       parsed === null ||
       !Array.isArray((parsed as RepoState).commits) ||
+      !(parsed as RepoState).commits.every(isCommit) ||
       !Array.isArray((parsed as RepoState).branches) ||
+      !(parsed as RepoState).branches.every(isBranch) ||
       typeof (parsed as RepoState).activeBranch !== "string"
     ) {
       return null;

@@ -35,10 +35,7 @@ export function BootTerminal({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div
-          className="bg-background/50 border border-border/50 p-4 min-h-64 font-mono text-xs md:text-sm leading-6"
-          style={{ fontFamily: "var(--font-geist-mono), monospace" }}
-        >
+        <div className="retro bg-background/50 border border-border/50 p-3 md:p-4 h-[365px] overflow-hidden text-[10px] md:text-xs leading-5">
           {displayedLines.map((line, index) => (
             <div key={index} className={getLineColor(line.type)}>
               {line.text || "\u00A0"}
