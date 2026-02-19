@@ -15,9 +15,13 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Commit or Quit — Life Version Control",
+  title: "Commit or Quit - Life Version Control",
   description:
     "Track your life decisions like Git commits. Branch your choices, monitor your streaks, and version control your journey.",
+  authors: { name: "Abu Bokkor Siddik", url: "https://github.com/Abubokkor98" },
+  keywords: ["commit", "quit", "life", "version control", "decisions"],
+  publisher: "Abu Bokkor Siddik",
+  
 };
 
 export default function RootLayout({

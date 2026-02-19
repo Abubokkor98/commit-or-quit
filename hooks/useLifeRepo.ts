@@ -161,26 +161,29 @@ export function useLifeRepo(): UseLifeRepoReturn {
     }));
   }, []);
 
-  const createBranch = useCallback((name: string): boolean => {
-    const trimmed = name.trim();
-    if (!trimmed) return false;
+  const createBranch = useCallback(
+    (name: string): boolean => {
+      const trimmed = name.trim();
+      if (!trimmed) return false;
 
-    setRepo((prev) => {
-      const alreadyExists = prev.branches.some(
+      const alreadyExists = repo.branches.some(
         (b) => b.name.toLowerCase() === trimmed.toLowerCase(),
       );
-      if (alreadyExists) return prev;
+      if (alreadyExists) return false;
 
-      const newBranch: Branch = { name: trimmed, createdAt: Date.now() };
-      return {
-        ...prev,
-        branches: [...prev.branches, newBranch],
-        activeBranch: trimmed,
-      };
-    });
+      setRepo((prev) => {
+        const newBranch: Branch = { name: trimmed, createdAt: Date.now() };
+        return {
+          ...prev,
+          branches: [...prev.branches, newBranch],
+          activeBranch: trimmed,
+        };
+      });
 
-    return true;
-  }, []);
+      return true;
+    },
+    [repo.branches],
+  );
 
   const switchBranch = useCallback((name: string) => {
     setRepo((prev) => ({ ...prev, activeBranch: name }));

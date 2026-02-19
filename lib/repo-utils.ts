@@ -94,7 +94,12 @@ export function calculateStreak(commits: Commit[]): number {
     return 0;
   }
 
-  // Start counting from today backwards
+  // If no commit today, start counting from yesterday
+  if (!uniqueDays.has(todayStr)) {
+    cursor.setDate(cursor.getDate() - 1);
+  }
+
+  // Count consecutive days backwards
   while (uniqueDays.has(cursor.toISOString().slice(0, 10))) {
     streak++;
     cursor.setDate(cursor.getDate() - 1);

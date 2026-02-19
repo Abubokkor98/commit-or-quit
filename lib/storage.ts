@@ -1,3 +1,4 @@
+import { parseImportedJson } from "@/lib/repo-utils";
 import type { RepoState } from "@/types/repo";
 import { DEFAULT_BRANCH_NAME } from "@/types/repo";
 
@@ -15,8 +16,8 @@ export function loadRepo(): RepoState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return getDefaultRepoState();
-    const parsed = JSON.parse(raw) as RepoState;
-    return parsed;
+    const parsed = parseImportedJson(raw);
+    return parsed ?? getDefaultRepoState();
   } catch {
     return getDefaultRepoState();
   }
