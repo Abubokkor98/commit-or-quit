@@ -16,6 +16,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/8bit/alert-dialog";
 import { Button } from "@/components/ui/8bit/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/8bit/tooltip";
 
 interface RepoActionsProps {
   onExport: () => void;
@@ -55,26 +60,40 @@ export function RepoActions({ onExport, onImport, onReset }: RepoActionsProps) {
   return (
     <div className="flex items-center gap-2 flex-wrap">
       {/* Export */}
-      <Button
-        variant="outline"
-        size="sm"
-        className="text-xs gap-2"
-        onClick={onExport}
-      >
-        <Download size={13} />
-        Export
-      </Button>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs gap-2"
+            onClick={onExport}
+          >
+            <Download size={13} />
+            Export
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p>Download your repo as a JSON backup</p>
+        </TooltipContent>
+      </Tooltip>
 
       {/* Import */}
-      <Button
-        variant="outline"
-        size="sm"
-        className="text-xs gap-2"
-        onClick={() => fileInputRef.current?.click()}
-      >
-        <Upload size={13} />
-        Import
-      </Button>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs gap-2"
+            onClick={() => fileInputRef.current?.click()}
+          >
+            <Upload size={13} />
+            Import
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p>Restore from a previously exported JSON backup</p>
+        </TooltipContent>
+      </Tooltip>
       <input
         ref={fileInputRef}
         type="file"

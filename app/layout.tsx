@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/8bit/tooltip";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   authors: { name: "Abu Bokkor Siddik", url: "https://github.com/Abubokkor98" },
   keywords: ["commit", "quit", "life", "version control", "decisions"],
   publisher: "Abu Bokkor Siddik",
-  
 };
 
 export default function RootLayout({
