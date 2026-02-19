@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# `commit-or-quit`
 
-## Getting Started
+Track your life decisions like Git commits. No backend, no auth, just choices.
 
-First, run the development server:
+![Commit or Quit Dashboard](/public/image.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Think of your life as a codebase. Every decision you make is a **commit** — starting a new job, hitting the gym, learning a skill, ending a habit. You write a short message describing the decision, tag it with a category and mood, then track whether it worked out or not.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Branches** let you separate different life directions. Keep your career decisions on `career-pivot`, your health goals on `fitness-arc`, and your main timeline on `main`. Switch between them anytime.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Click **`git commit`** to log a decision
+2. Pick a **category** (career, health, finance, learning, etc.)
+3. Set your **mood** and **confidence level** (1–10)
+4. Track outcomes — mark commits as success, failed, or revert them
+5. Create **branches** to explore different life paths
+6. Use **Export** to back up your data, **Import** to restore
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- `git commit` your life decisions with a message, category, mood, and confidence level
+- `git branch` into different life directions — career, health, relationships, and more
+- `git revert` when you change your mind
+- `git log` your history with status filters (active, success, failed, reverted)
+- GitHub-style contribution graph for tracking consistency
+- Dashboard stats: total commits, success rate, day streak, branches
+- Export / Import your repo as JSON backup
+- Fully offline — all data stored in `localStorage`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Please read the [contributing guide](CONTRIBUTING.md).
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Licensed under the [MIT License](LICENSE).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+<p align="center">
+  <code>crafted by</code> <a href="https://github.com/Abubokkor98">Abu Bokkor Siddik</a> <code>in</code> <a href="https://8bitcn.com">8-bit</a> <code>mode</code>
+</p>
