@@ -74,7 +74,7 @@ export function calculateSuccessRate(commits: Commit[]): number {
     (c) => c.status === "success" || c.status === "failed",
   );
   if (resolved.length === 0) return 0;
-  const successes = commits.filter((c) => c.status === "success").length;
+  const successes = resolved.filter((c) => c.status === "success").length;
   return Math.round((successes / resolved.length) * 100);
 }
 
@@ -126,12 +126,22 @@ export function exportRepoAsJson(state: RepoState): void {
 }
 
 export function parseImportedJson(raw: string): RepoState | null {
+  const VALID_STATUSES: string[] = [
+    "in-progress",
+    "success",
+    "failed",
+    "reverted",
+  ];
+
   const isCommit = (c: unknown): boolean =>
     typeof c === "object" &&
     c !== null &&
     typeof (c as Commit).id === "string" &&
     typeof (c as Commit).message === "string" &&
+    typeof (c as Commit).branch === "string" &&
+    typeof (c as Commit).category === "string" &&
     typeof (c as Commit).status === "string" &&
+    VALID_STATUSES.includes((c as Commit).status) &&
     typeof (c as Commit).createdAt === "number";
 
   const isBranch = (b: unknown): boolean =>
@@ -149,7 +159,11 @@ export function parseImportedJson(raw: string): RepoState | null {
       !(parsed as RepoState).commits.every(isCommit) ||
       !Array.isArray((parsed as RepoState).branches) ||
       !(parsed as RepoState).branches.every(isBranch) ||
-      typeof (parsed as RepoState).activeBranch !== "string"
+      typeof (parsed as RepoState).activeBranch !== "string" ||
+      !(parsed as RepoState).branches.some(
+        (b) =>
+          (b as { name: string }).name === (parsed as RepoState).activeBranch,
+      )
     ) {
       return null;
     }

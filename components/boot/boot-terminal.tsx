@@ -24,7 +24,7 @@ export function BootTerminal({
     <Card>
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-xs">
-          <div className="flex gap-1.5">
+          <div className="flex gap-1.5" aria-hidden="true">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block" />
@@ -35,7 +35,12 @@ export function BootTerminal({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="retro bg-background/50 border border-border/50 p-3 md:p-4 h-[365px] overflow-hidden text-[10px] md:text-xs leading-5">
+        <div
+          role="log"
+          aria-label="Boot sequence output"
+          aria-live="polite"
+          className="retro bg-background/50 border border-border/50 p-3 md:p-4 h-[365px] overflow-hidden text-[10px] md:text-xs leading-5"
+        >
           {displayedLines.map((line, index) => (
             <div key={index} className={getLineColor(line.type)}>
               {line.text || "\u00A0"}
@@ -45,13 +50,13 @@ export function BootTerminal({
           {!isDone && currentLine && (
             <div className={getLineColor(currentLine.type)}>
               {currentText}
-              <span className="animate-pulse text-primary">█</span>
+              <span className="cursor-blink text-primary">█</span>
             </div>
           )}
 
           {isDone && (
             <div className="text-primary mt-1">
-              <span className="animate-pulse">█</span>
+              <span className="cursor-blink">█</span>
             </div>
           )}
         </div>
