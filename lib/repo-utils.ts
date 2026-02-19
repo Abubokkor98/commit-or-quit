@@ -23,7 +23,11 @@ export function formatCommitDate(timestamp: number): string {
 }
 
 export function getDateString(timestamp: number): string {
-  return new Date(timestamp).toISOString().slice(0, 10);
+  const d = new Date(timestamp);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
 function getDatesForPastWeeks(weeks: number): string[] {
@@ -34,7 +38,7 @@ function getDatesForPastWeeks(weeks: number): string[] {
   for (let i = totalDays - 1; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    dates.push(date.toISOString().slice(0, 10));
+    dates.push(getDateString(date.getTime()));
   }
 
   return dates;
@@ -85,10 +89,10 @@ export function calculateStreak(commits: Commit[]): number {
   const cursor = new Date(today);
 
   // Allow streak to count if there's a commit today OR yesterday
-  const todayStr = cursor.toISOString().slice(0, 10);
+  const todayStr = getDateString(cursor.getTime());
   const yesterday = new Date(cursor);
   yesterday.setDate(cursor.getDate() - 1);
-  const yesterdayStr = yesterday.toISOString().slice(0, 10);
+  const yesterdayStr = getDateString(yesterday.getTime());
 
   if (!uniqueDays.has(todayStr) && !uniqueDays.has(yesterdayStr)) {
     return 0;
@@ -100,7 +104,7 @@ export function calculateStreak(commits: Commit[]): number {
   }
 
   // Count consecutive days backwards
-  while (uniqueDays.has(cursor.toISOString().slice(0, 10))) {
+  while (uniqueDays.has(getDateString(cursor.getTime()))) {
     streak++;
     cursor.setDate(cursor.getDate() - 1);
   }
@@ -115,8 +119,10 @@ export function exportRepoAsJson(state: RepoState): void {
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = `commit-or-quit-backup-${Date.now()}.json`;
+  document.body.appendChild(anchor);
   anchor.click();
-  URL.revokeObjectURL(url);
+  document.body.removeChild(anchor);
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 export function parseImportedJson(raw: string): RepoState | null {
