@@ -151,13 +151,16 @@ export function Dashboard() {
       {/* Footer */}
       <footer className="border-t border-border px-4 md:px-8 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <p className="text-[9px] text-muted-foreground/50">
+          <p
+            className="text-[9px] text-muted-foreground/50"
+            style={{ fontFamily: "'Press Start 2P', monospace" }}
+          >
             Crafted by{" "}
             <a
               href="https://github.com/Abubokkor98"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary/50 hover:text-primary transition-colors"
+              className="text-primary/50"
             >
               Abu Bokkor
             </a>{" "}
@@ -166,14 +169,20 @@ export function Dashboard() {
               href="https://8bitcn.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary/50 hover:text-primary transition-colors"
+              className="text-primary/50"
             >
               8-bit
             </a>{" "}
             mode
           </p>
-          <p className="text-[9px] text-muted-foreground/50">
-            {repo.commits.length} total commits
+          <p
+            className="text-[9px] text-muted-foreground/50"
+            style={{ fontFamily: "'Press Start 2P', monospace" }}
+          >
+            <span className="text-[oklch(0.72_0.2_142)]">
+              {repo.commits.length}
+            </span>{" "}
+            total commits
           </p>
         </div>
       </footer>
