@@ -60,7 +60,7 @@ When you create a commit we kindly ask you to follow the convention `category: m
 
 - `feat`: all changes that introduce completely new code or new features
 - `fix`: changes that fix a bug
-- `refactor`: any code related change that is not a fix nor a feature
+- `refactor`: any code-related change that is not a fix nor a feature
 - `docs`: changing existing or creating new documentation
 - `chore`: all changes to the repository that do not fit into any of the above categories
 
