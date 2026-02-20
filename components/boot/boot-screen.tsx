@@ -71,14 +71,14 @@ export function BootScreen({ onComplete }: BootScreenProps) {
   }, [currentLineIndex, currentText, isDone, onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-background flex flex-col items-center justify-center p-4 md:p-8 z-50">
-      <div className="w-full max-w-2xl flex flex-col gap-6">
+    <div className="fixed inset-0 bg-background flex flex-col items-center overflow-hidden p-4 lg:p-8 z-50 h-[100dvh]">
+      <div className="w-full max-w-2xl flex flex-col gap-3 lg:gap-6 my-auto">
         {/* Title */}
-        <div className="text-center">
-          <h1 className="retro text-lg md:text-xl text-primary animate-pulse">
+        <div className="text-center shrink-0">
+          <h1 className="retro text-sm md:text-base lg:text-xl text-primary animate-pulse">
             COMMIT OR QUIT
           </h1>
-          <p className="retro text-[0.5rem] md:text-[0.625rem] text-muted-foreground mt-2">
+          <p className="retro text-[0.4rem] md:text-[0.5rem] lg:text-[0.625rem] text-muted-foreground mt-1">
             life.git — version control for your decisions
           </p>
         </div>
@@ -90,12 +90,14 @@ export function BootScreen({ onComplete }: BootScreenProps) {
           isDone={isDone}
         />
 
-        <BootProgress progress={progress} isDone={isDone} />
+        <div className="shrink-0">
+          <BootProgress progress={progress} isDone={isDone} />
+        </div>
 
         {/* Skip hint */}
         <button
           onClick={onComplete}
-          className="retro text-[0.5rem] text-muted-foreground/40 hover:text-muted-foreground transition-colors cursor-pointer text-center"
+          className="retro text-[0.4rem] md:text-[0.5rem] text-muted-foreground/40 hover:text-muted-foreground transition-colors cursor-pointer text-center shrink-0"
         >
           [ PRESS TO SKIP ]
         </button>

@@ -150,9 +150,9 @@ export function Dashboard() {
 
       {/* Footer */}
       <footer className="border-t border-border px-4 md:px-8 py-3">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-0">
           <p
-            className="text-[9px] text-muted-foreground/50"
+            className="text-[9px] text-muted-foreground/50 text-center md:text-left"
             style={{ fontFamily: "'Press Start 2P', monospace" }}
           >
             Crafted by{" "}
@@ -176,7 +176,7 @@ export function Dashboard() {
             mode
           </p>
           <p
-            className="text-[9px] text-muted-foreground/50"
+            className="text-[9px] text-muted-foreground/50 text-center md:text-right"
             style={{ fontFamily: "'Press Start 2P', monospace" }}
           >
             <span className="text-[oklch(0.72_0.2_142)]">

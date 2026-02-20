@@ -39,7 +39,7 @@ export function BootTerminal({
           role="log"
           aria-label="Boot sequence output"
           aria-live="polite"
-          className="retro bg-background/50 border border-border/50 p-3 md:p-4 h-[365px] overflow-hidden text-[10px] md:text-xs leading-5"
+          className="retro bg-background/50 border border-border/50 p-2 md:p-3 lg:p-4 h-[calc(100dvh-300px)] lg:h-[365px] max-h-[365px] overflow-hidden text-[8px] md:text-[10px] lg:text-xs leading-4 md:leading-5"
         >
           {displayedLines.map((line, index) => (
             <div key={index} className={getLineColor(line.type)}>
