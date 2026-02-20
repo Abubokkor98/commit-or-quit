@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/8bit/tooltip";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${geistMono.variable} ${pressStart2P.variable} font-mono antialiased bg-background text-foreground min-h-screen`}
       >
         <TooltipProvider>{children}</TooltipProvider>
+        <Analytics />
       </body>
     </html>
   );
