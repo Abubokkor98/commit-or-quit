@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/8bit/card";
 import { Button } from "@/components/ui/8bit/button";
-import "@/components/ui/8bit/styles/retro.css";
 
 export const metadata: Metadata = {
   title: "404 - Merge Conflict | Commit or Quit",
